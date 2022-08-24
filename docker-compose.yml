@@ -1,0 +1,21 @@
+version: '2'
+services:
+ wordpress:
+   image: wordpress
+   links: 
+   - wordpress_db:mysql
+   ports: 
+   - "8070:80"
+ wordpress_db:
+   image: mariadb
+   environment: 
+      MY_SQL_ROOT_PASSWORD: example
+ phpmyadmin:
+   image: corbinu/docker-phpmyadmin
+   links: 
+   - wordpress_db:mysql
+   ports: 
+   - "8181:80"
+   environment:
+     MY_SQL_USERNAME: root
+     MY_SQL_ROOT_PASSWORD: niti
